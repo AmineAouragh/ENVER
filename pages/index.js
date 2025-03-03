@@ -16,6 +16,17 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 
 export default function Home() {
@@ -70,6 +81,36 @@ export default function Home() {
           <span className="text-6xl font-BebasNeue w-1/2">Welcome, Amine</span>
           <div className='w-full p-4 mt-12 border border-gray-300 rounded-md'>
             <p className='text-2xl font-BebasNeue'>Invite team members</p>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">Invite team members</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle className="font-Inter text-2xl">Invite a team member</DialogTitle>
+                  <DialogDescription>
+                    Make changes to your profile here. Click save when you're done.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <Input id="name" value="" placeholder="John Doe" className="col-span-3" />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="username" className="text-right">
+                      Email
+                    </Label>
+                    <Input id="email" value="" placeholder="johndoe@example.com" className="col-span-3" />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit" className="font-BebasNeue text-xl">Send invite</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </section>
       </div>

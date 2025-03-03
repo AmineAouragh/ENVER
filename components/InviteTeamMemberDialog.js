@@ -25,7 +25,7 @@ export function InviteTeamMemberDialog(){
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline">Invite team members</Button>
+                <Button variant="outline" className="mt-4">Invite team members</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

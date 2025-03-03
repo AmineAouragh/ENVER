@@ -41,24 +41,24 @@ export default function Home() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
                       Profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
                       Billing
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
                       Settings
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
+                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">Manage Team</DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuItem className="font-Cairo text-lg font-semibold">Support</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem className="font-Cairo text-lg font-semibold">
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -66,8 +66,11 @@ export default function Home() {
             </li>
           </ul>
         </nav>
-        <section id="hero_section" className='py-20 mx-auto w-2/3'>
-          <h1 className="text-6xl font-BebasNeue w-1/2">Welcome, Amine</h1>
+        <section id="" className='py-20 mx-auto w-3/4'>
+          <span className="text-6xl font-BebasNeue w-1/2">Welcome, Amine</span>
+          <div className='w-full p-4 mt-12 border border-gray-300 rounded-md'>
+            <p className='text-2xl font-BebasNeue'>Invite team members</p>
+          </div>
         </section>
       </div>
     </>

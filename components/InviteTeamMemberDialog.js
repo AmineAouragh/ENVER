@@ -31,7 +31,8 @@ export function InviteTeamMemberDialog(){
                 <DialogHeader>
                   <DialogTitle className="font-Inter text-2xl">Invite a team member</DialogTitle>
                   <DialogDescription>
-                    Make changes to your profile here. Click save when you're done.
+                  Enter the details below to invite a new team member to Enver. 
+                  They&apos;ll receive an email with instructions to join and set up their development environment.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -39,13 +40,13 @@ export function InviteTeamMemberDialog(){
                     <Label htmlFor="name" className="text-right">
                       Name
                     </Label>
-                    <Input id="name" value="" placeholder="John Doe" className="col-span-3" />
+                    <Input id="name" placeholder="John Doe" className="col-span-3" />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
                     <Label htmlFor="username" className="text-right">
                       Email
                     </Label>
-                    <Input id="email" value="" placeholder="johndoe@example.com" className="col-span-3" />
+                    <Input id="email" placeholder="johndoe@example.com" className="col-span-3" />
                   </div>
                   <div className='grid grid-cols-4 items-center gap-4'>
                     <Label htmlFor="role" className="text-right">

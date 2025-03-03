@@ -25,6 +25,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -104,6 +113,24 @@ export default function Home() {
                       Email
                     </Label>
                     <Input id="email" value="" placeholder="johndoe@example.com" className="col-span-3" />
+                  </div>
+                  <div className='grid grid-cols-4 items-center gap-4'>
+                    <Label htmlFor="role" className="text-right">
+                      Role
+                    </Label>
+                    <Select>
+                      <SelectTrigger className="col-span-3">
+                        <SelectValue placeholder="Select a role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Roles</SelectLabel>
+                          <SelectItem value="frontend_dev">Frontend Dev</SelectItem>
+                          <SelectItem value="backend_dev">Backend Dev</SelectItem>
+                          <SelectItem value="fullstack_dev">Fullstack Dev</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <DialogFooter>

@@ -20,8 +20,15 @@ import {
   import { Label } from "@/components/ui/label"
   import { Button } from "@/components/ui/button"
 
+import { toast } from "sonner"
+
+import { useState } from 'react'
+
 
 export function InviteTeamMemberDialog(){
+    const [ name, setName ] = useState('') 
+    const [ email, setEmail ] = useState('') 
+    const [ role, setRole ] = useState('')
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -40,7 +47,7 @@ export function InviteTeamMemberDialog(){
                     <Label htmlFor="name" className="text-right">
                       Name
                     </Label>
-                    <Input id="name" placeholder="John Doe" className="col-span-3" />
+                    <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="John Doe" className="col-span-3" />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
                     <Label htmlFor="username" className="text-right">
@@ -68,7 +75,20 @@ export function InviteTeamMemberDialog(){
                   </div>
                 </div>
                 <DialogFooter>
-                  <Button type="submit" className="font-BebasNeue text-xl">Send invite</Button>
+                  <Button 
+                    className="font-BebasNeue text-xl"
+                    onClick={() =>
+                        toast(`An email invite will be sent to ${name}.`, {
+                          description: "Sunday, December 03, 2023 at 9:00 AM",
+                          action: {
+                            label: "Undo",
+                            onClick: () => console.log("Undo"),
+                          },
+                        })
+                    }
+                  >
+                    Send invite
+                </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

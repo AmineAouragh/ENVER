@@ -24,7 +24,7 @@ export function DropDown(){
     return (
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button type="button" className="flex flex-row items-center border-gray-300 border px-4 rounded-md py-1 text-xl font-BebasNeue">
+                  <button type="button" className="flex flex-row items-center hover:bg-gray-50 transition duration-600 px-2 rounded-md py-1 text-xl font-BebasNeue">
                     <Avatar>
                       <AvatarFallback>AA</AvatarFallback>
                     </Avatar>

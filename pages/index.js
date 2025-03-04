@@ -1,23 +1,30 @@
 import Image from 'next/image'
 import Head from 'next/head' 
 import Link from 'next/link'
+import { toast } from "sonner"
+ 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { DropDown } from '@/components/DropDown'
 
 import { InviteTeamMemberDialog } from '@/components/InviteTeamMemberDialog'
+import { FaJava } from "react-icons/fa"
+import { IoLogoJavascript } from "react-icons/io"
+import { FaPython } from "react-icons/fa"
+import { FaReact } from "react-icons/fa"
+import { GiJesterHat } from "react-icons/gi"
+import { FaJenkins } from "react-icons/fa"
+import { FaGitAlt } from "react-icons/fa"
+import { FaDocker } from "react-icons/fa"
+import { FaPhp } from "react-icons/fa"
+import { GrMysql } from "react-icons/gr"
+import { BiLogoMongodb, BiLogoNodejs } from "react-icons/bi"
+import { VscVscode } from "react-icons/vsc"
+import { BiLogoPostgresql } from "react-icons/bi"
+import { DiDjango, DiDocker } from "react-icons/di"
+import { BiLogoTailwindCss } from "react-icons/bi"
+import { BiLogoKubernetes } from "react-icons/bi"
+import { BiLogoSpringBoot } from "react-icons/bi"
+import { DiNodejs } from "react-icons/di"
 
 
 export default function Home() {
@@ -35,44 +42,61 @@ export default function Home() {
           </Link>
           <ul id='navlist' className='flex flex-row items-center'>
             <li>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="text-xl font-BebasNeue">Open</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
-                      Profile
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">
-                      Settings
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem className="font-Cairo text-lg font-semibold">Manage Team</DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="font-Cairo text-lg font-semibold">Support</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="font-Cairo text-lg font-semibold">
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <DropDown />
             </li>
           </ul>
         </nav>
         <section id="" className='py-20 mx-auto w-3/4'>
           <span className="text-6xl font-BebasNeue w-1/2">Welcome, Amine</span>
-          <div className='w-full p-4 mt-12 border border-gray-300 rounded-md'>
-            <p className='text-2xl font-BebasNeue'>Invite team members</p>
+          <div className='w-full p-4 mt-12 border border-gray-200 rounded-lg'>
+            <h3 className='text-3xl font-BebasNeue'>Invite team members</h3>
             <InviteTeamMemberDialog />
+          </div>
+          <div className='w-1/2 p-4 mt-6 border border-gray-200 rounded-lg'>
+            <h3 className='text-3xl font-BebasNeue'>Select tech stack</h3>
+            <p className='text-md text-gray-700 font-Inter'>Start selecting technologies for your team</p>
+            <div className='mt-4 grid grid-cols-3 gap-4'>
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <h4 className='font-Inter font-bold mb-4'>Frontend</h4>
+                <div className='grid grid-cols-3 gap-4'>
+                  <FaReact title='React' className='size-10' />
+                  <IoLogoJavascript title='JavaScript' className='size-10' />
+                  <BiLogoTailwindCss title='TailwindCSS' className='size-10' /> 
+                </div>
+              </div>
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <h4 className='font-Inter font-bold mb-4'>Backend</h4>
+                <div className='grid grid-cols-3 gap-4'>
+                  <DiDjango title='Django' className='size-10' />
+                  <BiLogoSpringBoot title='Spring Boot' className='size-10' /> 
+                  <BiLogoNodejs title='NodeJS' className='size-10' />
+                </div>
+              </div>
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <h4 className='font-Inter font-bold mb-4'>Databases</h4>
+                <div className='grid grid-cols-3 gap-4'>
+                  <BiLogoMongodb title='MongoDB' className='size-10' />
+                  <GrMysql title='MySQL' className='size-10' />
+                  <BiLogoPostgresql title='PostgreSQL' className='size-10' /> 
+                </div>
+              </div>
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <h4 className='font-Inter font-bold mb-4'>Languages</h4>
+                <div className='grid grid-cols-3 gap-4'>
+                  <FaJava title='Java' className='size-10' />
+                  <FaPython title='Python' className='size-10' />
+                  <FaPhp title='PHP' className='size-10' />
+                </div>
+              </div>
+              <div className='bg-gray-50 rounded-lg p-4'>
+                <h4 className='font-Inter font-bold mb-4'>DevOps</h4>
+                <div className='grid grid-cols-3 gap-4'>
+                  <FaDocker title='Docker' className='size-10' />
+                  <BiLogoKubernetes title='Kubernetes' className='size-10' />
+                  <FaJenkins title='Jenkins' className='size-10' />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>

@@ -11,7 +11,12 @@ import {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 import { Button } from "@/components/ui/button"
 
@@ -19,7 +24,12 @@ export function DropDown(){
     return (
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="text-xl font-BebasNeue">Open</Button>
+                  <button type="button" className="flex flex-row items-center border-gray-300 border px-4 rounded-md py-1 text-xl font-BebasNeue">
+                    <Avatar>
+                      <AvatarFallback>AA</AvatarFallback>
+                    </Avatar>
+                    <span className="ml-3">Amine</span>
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>

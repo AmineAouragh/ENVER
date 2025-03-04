@@ -53,7 +53,10 @@ export default function Home() {
             <InviteTeamMemberDialog />
           </div>
           <div className='w-1/2 p-4 mt-6 border border-gray-200 rounded-lg'>
-            <h3 className='text-3xl font-BebasNeue'>Select tech stack</h3>
+            <div className='flex flex-row items-center justify-between w-full'>
+              <h3 className='text-3xl font-BebasNeue'>Configure your team&apos;s tech stack</h3>
+              <button type='button' className='rounded-md bg-gray-100 px-8 py-2 text-lg font-semibold font-Inter'>Configure tech stack</button>
+            </div>
             <p className='text-md text-gray-700 font-Inter'>Start selecting technologies for your team</p>
             <div className='mt-4 grid grid-cols-3 gap-4'>
               <div className='bg-gray-50 rounded-lg p-4'>

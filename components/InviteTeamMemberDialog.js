@@ -16,9 +16,10 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-  import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input"
   import { Label } from "@/components/ui/label"
   import { Button } from "@/components/ui/button"
+  import { RiTeamFill } from "react-icons/ri";
 
 import { toast } from "sonner"
 
@@ -32,7 +33,10 @@ export function InviteTeamMemberDialog(){
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" className="mt-4">Invite team members</Button>
+                <Button variant="outline" className="mt-4">
+                  <RiTeamFill className="size-10" />
+                  Invite a Team Member
+                </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

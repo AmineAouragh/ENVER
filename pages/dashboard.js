@@ -52,12 +52,19 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { MultiSelect } from "@/components/ui/multi-select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { FaDatabase } from "react-icons/fa"
 
 export default function Dashboard(){
+    const [ selectedFrameworks, setSelectedFrameworks ] = useState([])
+    const frameworksList = [
+        { value: "react", label: "React", icon: <FaReact />},
+        { value: "angular", label: "Angular", icon: <IoLogoAngular />},
+        { value: "vuejs", label: "Vue", icon: <IoLogoVue />}
+    ]
     return (
      <>
       <Head>
@@ -108,11 +115,12 @@ export default function Dashboard(){
                           </SelectTrigger>
                           <SelectContent>
                             <SelectGroup>
-                              <SelectItem value="frontend" className="text-md font-Inter">Frontend</SelectItem>
-                              <SelectItem value="backend" className="text-md font-Inter">Backend</SelectItem>
-                              <SelectItem value="databases" className="text-md font-Inter flex flex-row items-center">
-                                <FaDatabase />
-                                <span>Databases</span>
+                              <SelectItem value="programming_language" className="text-md flex flex-row items-center font-Inter">
+                                Programming Languages
+                              </SelectItem>
+                              <SelectItem value="frameworks" className="text-md font-Inter">Frameworks</SelectItem>
+                              <SelectItem value="databases" className="text-md font-Inter">
+                                Databases
                               </SelectItem>
                               <SelectItem value="devops" className="text-md font-Inter">DevOps</SelectItem>
                               <SelectItem value="testing" className="text-md font-Inter">Testing</SelectItem>
@@ -124,23 +132,7 @@ export default function Dashboard(){
                         <Label htmlFor="name" className="text-right">
                           Technology
                         </Label>
-                        <Select>
-                          <SelectTrigger className="col-span-3">
-                            <SelectValue placeholder="Select a category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectItem value="frontend" className="font-Inter text-md">Frontend</SelectItem>
-                              <SelectItem value="backend">Backend</SelectItem>
-                              <SelectItem value="databases" className=" flex-row items-center">
-                                <FaDatabase />
-                                <span>Databases</span>
-                              </SelectItem>
-                              <SelectItem value="devops">DevOps</SelectItem>
-                              <SelectItem value="testing">Testing</SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
+                        
                       </div>
                     </div>
                 </DialogContent>

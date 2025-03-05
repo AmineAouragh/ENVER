@@ -65,6 +65,10 @@ export default function Dashboard(){
         { value: "angular", label: "Angular", icon: <IoLogoAngular />},
         { value: "vuejs", label: "Vue", icon: <IoLogoVue />}
     ]
+    const router = useRouter()
+    function handleConfigureTechStack(){
+      router.push('/tech-stack')
+    }
     return (
      <>
       <Head>
@@ -92,53 +96,10 @@ export default function Dashboard(){
           <div className='w-1/2 p-4 mt-6 border border-gray-200 rounded-lg'>
             <div className='flex flex-row items-center justify-between w-full'>
               <h3 className='text-3xl font-BebasNeue'>Configure your team&apos;s tech stack</h3>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button type='button' className='rounded-md border border-gray-200 hover:bg-slate-50 px-6 py-2 text-md font-semibold font-Inter'>Configure tech stack</button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[720px]">
-                    <DialogHeader>
-                        <DialogTitle className="font-Inter text-2xl">Configure Tech Stack</DialogTitle>
-                        <DialogDescription>
-                            Select technologies your team members should use based on their roles and generate a setup script. 
-                            Each team member will be able to set up their development environment with just one-click.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className='grid gap-4 py-4'>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                          Category
-                        </Label>
-                        <Select>
-                          <SelectTrigger className="col-span-3">
-                            <SelectValue placeholder="Select a category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectItem value="programming_language" className="text-md flex flex-row items-center font-Inter">
-                                Programming Languages
-                              </SelectItem>
-                              <SelectItem value="frameworks" className="text-md font-Inter">Frameworks</SelectItem>
-                              <SelectItem value="databases" className="text-md font-Inter">
-                                Databases
-                              </SelectItem>
-                              <SelectItem value="devops" className="text-md font-Inter">DevOps</SelectItem>
-                              <SelectItem value="testing" className="text-md font-Inter">Testing</SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                          Technology
-                        </Label>
-                        
-                      </div>
-                    </div>
-                </DialogContent>
-              </Dialog>
+              <button type='button' onClick={handleConfigureTechStack} className='rounded-md border border-gray-200 hover:bg-slate-50 px-6 py-2 text-md font-semibold font-Inter'>Configure tech stack</button>
+              
             </div>
-            <p className='text-md text-gray-700 font-Inter'>Start selecting technologies for your team</p>
+            <p className='text-md text-gray-700 font-Inter'>Select and customize the technologies your team will use.</p>
             <div className='mt-4 grid grid-cols-3 gap-4'>
               <div className='bg-gray-50 rounded-lg p-4'>
                 <h4 className='font-Inter font-bold mb-4'>Frontend</h4>

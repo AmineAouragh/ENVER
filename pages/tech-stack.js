@@ -58,8 +58,26 @@ export default function TechStack(){
                 </li>
               </ul>
             </nav>
-            <section className='bg-slate-50 px-4 py-12 border border-gray-200 rounded-md my-20 mx-auto w-3/4'>
-              <span className='text-4xl font-BebasNeue'>Select Tech Stack For Your Team</span>
+            <section className='bg-slate-50 py-12 border border-gray-100 rounded-md my-20 w-full'>
+                <div className='w-3/4 mx-auto'>
+                  <h3 className='text-4xl font-BebasNeue mb-4'>Configure Your Tech Stack</h3>
+                  <p className='text-lg font-Inter text-gray-700'>Select and customize the technologies your team will use.</p>
+                </div>
+            </section>
+            <section id="" className='w-full'>
+                <div className='flex flex-row items-start justify-between w-3/4 mx-auto'>
+                  <div className='w-1/4 py-4 px-3 bg-slate-50 border border-gray-100 rounded-md'>
+                    <h4 className='text-md font-Inter font-semibold mb-6'>Technologies & Tools</h4>
+                    <ul className='flex flex-col ml-6'>
+                        <li className='font-Inter text-lg mb-2'>Programming Languages</li>
+                        <li className='font-Inter text-lg mb-2'>Frameworks & Libraries</li>
+                        <li className='font-Inter text-lg mb-2'>Databases</li>
+                        <li className='font-Inter text-lg mb-2'>DevOps & CI/CD</li>
+                        <li className='font-Inter text-lg mb-2'>Testing</li>
+                    </ul>
+                  </div>
+                  <div className='w-2/3 rounded-md p-4 bg-slate-50 border border-gray-100'></div>
+                </div>
             </section>
           </div>
         </>

@@ -44,6 +44,7 @@ import { GrTest } from "react-icons/gr"
 import { GoDatabase } from "react-icons/go"
 import { FiDatabase } from "react-icons/fi"
 import { TbSettingsBolt } from "react-icons/tb"
+import { RiSupabaseFill } from "react-icons/ri"
 
 
 export default function TechStack(){
@@ -51,6 +52,7 @@ export default function TechStack(){
     const categories = [
       { label: "Programming Languages", icon: <FaCode /> }, 
       { label: "Frameworks and Libraries" }, 
+      { label: "Backend" },
       { label: "Databases", icon: <FiDatabase /> }, 
       { label: "DevOps and CI/CD", icon: <TbSettingsBolt /> }, 
       { label: "Testing", icon: <GrTest /> }
@@ -72,10 +74,14 @@ export default function TechStack(){
       { name: "mysql", label: "MySQL", icon: <GrMysql /> },
       { name: "postgresql", label: "PostgreSQL", icon: <BiLogoPostgresql /> },
       { name: "mongodb", label: "MongoDB", icon: <BiLogoMongodb /> },
-      { name: "mariadb", label: "MariaDB", icon: <SiMariadb /> }
+      { name: "mariadb", label: "MariaDB", icon: <SiMariadb /> },
+      { name: "supabase", label: "Supabase", icon: <RiSupabaseFill /> }
     ]
 
     const [ selectedCategory, setSelectedCategory ] = useState('')
+    const [ selectedLanguage, setSelectedLanguage ] = useState('') 
+    const [ selectedFramework, setSelectedFramework ] = useState('') 
+    const [ selectedDatabase, setSelectedDatabase ] = useState('')
 
     return (
         <>
@@ -108,7 +114,7 @@ export default function TechStack(){
                       {
                         categories.map(
                           (category, i) => (
-                            <li key={i} tabIndex={0} onClick={() => setSelectedCategory(category.label)} className='font-Inter text-lg mb-2 flex flex-row items-center'>
+                            <li key={i} tabIndex={0} onClick={() => setSelectedCategory(category.label)} className={`${selectedCategory == category.label ? "bg-slate-800 text-gray-50" : ""} rounded-md px-3 py-1  cursor-pointer font-Inter text-lg mb-2 flex flex-row items-center`}>
                               {category.icon && category.icon}
                               <span className='ml-2'>{category.label}</span>
                             </li>
@@ -123,51 +129,60 @@ export default function TechStack(){
                         selectedCategory.length > 0
                         ?
                           <div>
-                            <h4 className='text-2xl font-Inter font-bold mb-6'>{selectedCategory}</h4>
+                            <h4 className='text-2xl font-Inter font-bold mb-3'>{selectedCategory}</h4>
                             {
                               selectedCategory == "Programming Languages" && 
-                              <div className='flex flex-row items-center'>
+                              <>
+                                <p className='text-gray-700 mb-5'>Select a programming language to set up its configuration.</p>
+                                <div className='flex flex-row items-center'>
                                 {
                                   programmingLanguages.map(
                                     (language, i) => (
-                                      <div key={i} tabIndex={0} className='rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center'>
+                                      <div key={i} tabIndex={0} onClick={() => setSelectedLanguage(language.label)} className={`${selectedLanguage == language.label ? 'bg-slate-800 text-gray-50' : ''} rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center`}>
                                         {language.icon}
                                         <span className='ml-2'>{language.label}</span>
                                       </div>
                                     )
                                   )
                                 }
-                              </div>
+                                </div>
+                              </>
                             }
                             {
                               selectedCategory == "Frameworks and Libraries" && 
-                              <div className='flex flex-row items-center'>
+                              <>
+                                <p className='text-gray-700 mb-5'>Choose a framework to customize its setup.</p>
+                                <div className='flex flex-row items-center'>
                                 {
                                   frameworks.map(
                                     (framework, i) => (
-                                      <div key={i} tabIndex={0} className='rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center'>
+                                      <div key={i} tabIndex={0} onClick={() => setSelectedFramework(framework.label)} className={`${selectedFramework == framework.label ? 'bg-slate-800 text-gray-50' : ''} rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center`}>
                                         {framework.icon}
                                         <span className='ml-2'>{framework.label}</span>
                                       </div>
                                     )
                                   )
                                 }
-                              </div>
+                                </div>
+                              </>
                             }
                             {
                               selectedCategory == "Databases" && 
-                              <div className='flex flex-row items-center'>
+                              <>
+                                <p className='text-gray-700 mb-5'>Pick a database to configure its connection and settings.</p>
+                                <div className='flex flex-row items-center'>
                                 {
                                   databases.map(
                                     (database, i) => (
-                                      <div key={i} tabIndex={0} className='rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center'>
+                                      <div key={i} tabIndex={0} onClick={() => setSelectedDatabase(database.label)} className={`${selectedDatabase == database.label ? "bg-slate-800 text-gray-50" : ""} rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center`}>
                                         {database.icon}
                                         <span className='ml-2'>{database.label}</span>
                                       </div>
                                     )
                                   )
                                 }
-                              </div>
+                                </div>
+                              </>
                             }
                           </div>
                         :

@@ -19,7 +19,7 @@ import { GrMysql } from "react-icons/gr"
 import { BiLogoMongodb, BiLogoNodejs } from "react-icons/bi"
 import { VscVscode } from "react-icons/vsc"
 import { BiLogoPostgresql } from "react-icons/bi"
-import { DiDjango, DiDocker } from "react-icons/di"
+import { DiDocker } from "react-icons/di"
 import { BiLogoTailwindCss } from "react-icons/bi"
 import { BiLogoKubernetes } from "react-icons/bi"
 import { BiLogoSpringBoot } from "react-icons/bi"
@@ -31,7 +31,6 @@ import { FaFigma } from "react-icons/fa"
 import { TbBrandReactNative } from "react-icons/tb"
 import { FaFlutter } from "react-icons/fa6"
 import { SiMariadb } from "react-icons/si"
-import { DiNodejs } from "react-icons/di"
 import { FaGolang } from "react-icons/fa6"
 import { DiRedis } from "react-icons/di"
 import { SiAwsamplify } from "react-icons/si"
@@ -45,6 +44,26 @@ import { GoDatabase } from "react-icons/go"
 import { FiDatabase } from "react-icons/fi"
 import { TbSettingsBolt } from "react-icons/tb"
 import { RiSupabaseFill } from "react-icons/ri"
+import { Skeleton } from "@/components/ui/skeleton"
+import { FaNodeJs } from "react-icons/fa"
+import { SiDjango } from "react-icons/si"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { SiApachemaven } from "react-icons/si"
+import { SiGradle } from "react-icons/si"
+import { SiApacheant } from "react-icons/si"
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 
 export default function TechStack(){
@@ -61,13 +80,19 @@ export default function TechStack(){
     const programmingLanguages = [
       { name: "java", label: "Java", icon: <FaJava /> },
       { name: "python", label: "Python", icon: <FaPython /> },
-      { name: "javascript", label: "JavaScript", icon: <IoLogoJavascript /> }
+      { name: "go", label: "Go", icon: <FaGolang /> },
+      { name: "php", label: "PHP", icon: <FaPhp /> }
     ]
     
     const frameworks = [
       { name: "react", label: "React", icon: <FaReact /> },
       { name: "angular", label: "Angular", icon: <IoLogoAngular /> },
       { name: "vue", label: "Vue", icon: <IoLogoVue /> }
+    ]
+
+    const backends = [
+      { name: "node", label: "Node", icon: <FaNodeJs /> },
+      { name: "django", label: "Django", icon: <SiDjango /> }
     ]
 
     const databases = [
@@ -82,6 +107,7 @@ export default function TechStack(){
     const [ selectedLanguage, setSelectedLanguage ] = useState('') 
     const [ selectedFramework, setSelectedFramework ] = useState('') 
     const [ selectedDatabase, setSelectedDatabase ] = useState('')
+    const [ selectedBackend, setSelectedBackend ] = useState('')
 
     return (
         <>
@@ -184,6 +210,24 @@ export default function TechStack(){
                                 </div>
                               </>
                             }
+                            {
+                              selectedCategory == "Backend" && 
+                              <>
+                                <p className='text-gray-700 mb-5'>Pick a backend technology to configure its settings.</p>
+                                <div className='flex flex-row items-center'>
+                                {
+                                  backends.map(
+                                    (backend, i) => (
+                                      <div key={i} tabIndex={0} onClick={() => setSelectedBackend(backend.label)} className={`${selectedBackend == backend.label ? "bg-slate-800 text-gray-50" : ""} rounded-md px-3 py-1 cursor-pointer bg-slate-100 border border-gray-200 text-xl mr-4 font-Inter flex flex-row items-center`}>
+                                        {backend.icon}
+                                        <span className='ml-2'>{backend.label}</span>
+                                      </div>
+                                    )
+                                  )
+                                }
+                                </div>
+                              </>
+                            }
                           </div>
                         :
                           <>
@@ -193,7 +237,93 @@ export default function TechStack(){
                       }
                     </div>
                     <div className='w-full rounded-md p-4 bg-slate-50 border border-gray-100'>
-
+                      <div className="flex flex-col items-start">
+                        {
+                          (
+                            (selectedCategory == "Backend" && selectedBackend.length == 0) 
+                            || (selectedCategory == "Databases" && selectedDatabase.length == 0) 
+                            || (selectedCategory == "Programming Languages" && selectedLanguage.length == 0)
+                            || (selectedCategory == "Frameworks and Libraries" && selectedFramework.length == 0)
+                          ) && 
+                          <>
+                            <Skeleton className="h-8 w-[250px] rounded-md mb-6" />
+                            <Skeleton className="h-4 w-[320px] rounded-md mb-6" />
+                            <hr className='w-full mb-6' />
+                            <div className="flex flex-row items-center justify-between w-full mb-4">
+                              <div className='flex flex-row items-center'>
+                                <Skeleton className="h-6 w-[150px] mr-4" />
+                                <Skeleton className="h-6 w-[250px]" />
+                              </div>
+                              <div className='flex flex-row items-center'>
+                                <Skeleton className="h-6 w-[150px] mr-4" />
+                                <Skeleton className="h-6 w-[250px]" />
+                              </div>
+                            </div>
+                            <div className='flex flex-row items-center mb-4'>
+                              <Skeleton className="h-6 w-[150px] mr-4" />
+                              <div className='flex flex-row items-center'>
+                                <Skeleton className="h-6 w-[100px] mr-2" />
+                                <Skeleton className="h-6 w-[100px] mr-2" />
+                                <Skeleton className="h-6 w-[100px]" />
+                              </div>
+                            </div>
+                            <div className='flex flex-row items-center w-full justify-end mt-8'>
+                              <Skeleton className="h-6 w-[80px] mr-4" />
+                              <Skeleton className="h-6 w-[130px]" />
+                            </div>
+                          </>
+                        }
+                        {
+                          (selectedCategory == "Programming Languages" && selectedLanguage == "Java")
+                          && 
+                          <>
+                            <div className='w-full'>
+                              <h4 className='font-bold text-xl font-Inter mb-2'>Customize Java Environment</h4>
+                              <p className='font-Inter text-gray-600 font-semibold mb-6'>Define the required setup for Java in advance to help your new hire or team get started quickly and efficiently</p>
+                              <hr className='mb-6' />
+                              <div className='mb-6'>
+                                <h5 className='font-bold text-2xl font-Inter mb-4'>JDK Version</h5>
+                                <div className='flex flex-row items-center w-1/2'>
+                                  <label htmlFor="jdk_version" className="font-Inter text-lg mr-4 w-1/3">Java JDK Version</label>
+                                  <Select id="jdk_version">
+                                    <SelectTrigger className="bg-white text-lg w-2/3 font-semibold font-Inter rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border text-slate-600 border-slate-300">
+                                      <SelectValue placeholder="Select a JDK version" />
+                                    </SelectTrigger>
+                                    <SelectContent className="rounded-lg text-slate-600 shadow-lg focus:outline-none border border-slate-300">
+                                      <SelectGroup>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_8">Java 8</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_11">Java 11</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_17">Java 17</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_21">Java 21</SelectItem>
+                                      </SelectGroup>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                              <div>
+                                <h5 className='font-bold text-2xl font-Inter mb-4'>Build Tool Configuration</h5>
+                                <div className='flex flex-row items-center w-1/2'>
+                                  <label htmlFor="build_tool" className="font-Inter text-lg mr-4 w-1/3">Build Tool</label>
+                                  <div className='flex flex-row items-center'>
+                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3'>
+                                      <SiApachemaven />
+                                      <span className='ml-2'>Maven</span>
+                                    </div>
+                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3'>
+                                      <SiGradle />
+                                      <span className='ml-2'>Gradle</span>
+                                    </div>
+                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter'>
+                                      <SiApacheant /> 
+                                      <span className='ml-2'>Ant</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        }
+                      </div>
                     </div>
                   </div>
                 </div>

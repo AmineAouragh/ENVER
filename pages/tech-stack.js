@@ -52,6 +52,10 @@ import { Label } from "@/components/ui/label"
 import { SiApachemaven } from "react-icons/si"
 import { SiGradle } from "react-icons/si"
 import { SiApacheant } from "react-icons/si"
+import { SiApachenetbeanside } from "react-icons/si"
+import { SiEclipseide } from "react-icons/si"
+import { SiIntellijidea } from "react-icons/si"
+import { FaRegFileCode } from "react-icons/fa"
 
 import {
   Select,
@@ -62,6 +66,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+
+import { Button } from "@/components/ui/button"
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
@@ -108,6 +114,9 @@ export default function TechStack(){
     const [ selectedFramework, setSelectedFramework ] = useState('') 
     const [ selectedDatabase, setSelectedDatabase ] = useState('')
     const [ selectedBackend, setSelectedBackend ] = useState('')
+    const [ selectedJdkVersion, setSelectedJdkVersion ] = useState('')
+    const [ selectedJavaBuildTool, setSelectedJavaBuildTool ] = useState('')
+    const [ selectedJavaIDE, setSelectedJavaIDE ] = useState('')
 
     return (
         <>
@@ -132,7 +141,7 @@ export default function TechStack(){
                   <h3 className='text-3xl font-Inter font-bold'>Configure Your Tech Stack</h3>
                 </div>
             </section>
-            <section id="" className='w-full'>
+            <section id="" className='w-full pb-20'>
                 <div className='flex flex-row items-start justify-between w-3/4 mx-auto'>
                   <div className='w-1/4 py-4 px-3 bg-slate-50 border border-gray-100 rounded-md'>
                     <h4 className='text-md font-Inter font-semibold mb-6'>Technologies & Tools</h4>
@@ -278,47 +287,81 @@ export default function TechStack(){
                           && 
                           <>
                             <div className='w-full'>
-                              <h4 className='font-bold text-xl font-Inter mb-2'>Customize Java Environment</h4>
-                              <p className='font-Inter text-gray-600 font-semibold mb-6'>Define the required setup for Java in advance to help your new hire or team get started quickly and efficiently</p>
+                              <h4 className='font-bold text-2xl font-Inter mb-2'>Customize Java Environment</h4>
+                              <p className='font-Inter text-gray-600 font-semibold mb-6'>Predefine the Java setup to streamline onboarding and ensure a consistent development environment for your team.</p>
                               <hr className='mb-6' />
-                              <div className='mb-6'>
-                                <h5 className='font-bold text-2xl font-Inter mb-4'>JDK Version</h5>
+                              <div className='mb-8'>
+                                <h5 className='font-bold text-2xl font-Inter'>JDK Version</h5>
+                                <p className='mb-4 text-gray-700 text-md font-Inter'>Choose which version of the JDK (Java Development Kit) should be used by the team.</p>
                                 <div className='flex flex-row items-center w-1/2'>
                                   <label htmlFor="jdk_version" className="font-Inter text-lg mr-4 w-1/3">Java JDK Version</label>
-                                  <Select id="jdk_version">
+                                  <Select id="jdk_version" onValueChange={(value) => setSelectedJdkVersion(value)}>
                                     <SelectTrigger className="bg-white text-lg w-2/3 font-semibold font-Inter rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border text-slate-600 border-slate-300">
                                       <SelectValue placeholder="Select a JDK version" />
                                     </SelectTrigger>
                                     <SelectContent className="rounded-lg text-slate-600 shadow-lg focus:outline-none border border-slate-300">
                                       <SelectGroup>
-                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_8">Java 8</SelectItem>
-                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_11">Java 11</SelectItem>
-                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_17">Java 17</SelectItem>
-                                        <SelectItem className="text-lg font-Inter font-semibold" value="java_21">Java 21</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="Java 8">Java 8</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="Java 11">Java 11</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="Java 17">Java 17</SelectItem>
+                                        <SelectItem className="text-lg font-Inter font-semibold" value="Java 21">Java 21</SelectItem>
                                       </SelectGroup>
                                     </SelectContent>
                                   </Select>
                                 </div>
                               </div>
-                              <div>
-                                <h5 className='font-bold text-2xl font-Inter mb-4'>Build Tool Configuration</h5>
+                              <div className='mb-8'>
+                                <h5 className='font-bold text-2xl font-Inter'>Build Tool Configuration</h5>
+                                <p className='mb-4 font-Inter text-md text-gray-700'>Choose which build tool the team will use for Java projects to handle dependencies and builds.</p>
                                 <div className='flex flex-row items-center w-1/2'>
                                   <label htmlFor="build_tool" className="font-Inter text-lg mr-4 w-1/3">Build Tool</label>
                                   <div className='flex flex-row items-center'>
-                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3'>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaBuildTool("Maven")} className={`${selectedJavaBuildTool == "Maven" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3`}>
                                       <SiApachemaven />
                                       <span className='ml-2'>Maven</span>
                                     </div>
-                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3'>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaBuildTool("Gradle")} className={`${selectedJavaBuildTool == "Gradle" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3`}>
                                       <SiGradle />
                                       <span className='ml-2'>Gradle</span>
                                     </div>
-                                    <div className='flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter'>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaBuildTool("Ant")} className={`${selectedJavaBuildTool == "Ant" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter`}>
                                       <SiApacheant /> 
                                       <span className='ml-2'>Ant</span>
                                     </div>
                                   </div>
                                 </div>
+                              </div>
+                              <div className='mb-8'>
+                                <h5 className='font-bold text-2xl font-Inter'>Java IDE Configuration (Optional)</h5>
+                                <p className='mb-4 font-Inter text-md text-gray-700'>Choose which build tool the team will use for Java projects to handle dependencies and builds.</p>
+                                <div className='flex flex-row items-center'>
+                                  <label htmlFor="build_tool" className="font-Inter text-lg mr-4">Preferred Java IDE</label>
+                                  <div className='flex flex-row items-center'>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaIDE("IntelliJ IDEA")} className={`${selectedJavaIDE == "IntelliJ IDEA" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3`}>
+                                      <SiIntellijidea />
+                                      <span className='ml-2'>IntelliJ IDEA</span>
+                                    </div>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaIDE("VS Code")} className={`${selectedJavaIDE == "VS Code" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3`}>
+                                      <VscVscode />
+                                      <span className='ml-2'>VS Code</span>
+                                    </div>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaIDE("Eclipse")} className={`${selectedJavaIDE == "Eclipse" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter mr-3`}>
+                                      <SiEclipseide /> 
+                                      <span className='ml-2'>Eclipse</span>
+                                    </div>
+                                    <div tabIndex={0} onClick={() => setSelectedJavaIDE("NetBeans")} className={`${selectedJavaIDE == "NetBeans" ? "bg-slate-800 text-gray-50" : ""} cursor-pointer flex flex-row items-center px-3 py-1 rounded-lg border border-gray-200 bg-slate-100 text-xl font-Inter`}>
+                                      <SiApachenetbeanside /> 
+                                      <span className='ml-2'>NetBeans</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className='flex flex-row items-center justify-end mt-8'>
+                                <Button className="mr-4 text-xl bg-slate-800 py-2 rounded-lg">Save Configuration</Button>
+                                <Button variant="outline" className="flex flex-row items-center py-4 rounded-lg text-xl">
+                                  <FaRegFileCode />
+                                  <span>Generate Setup Script</span>
+                                </Button>
                               </div>
                             </div>
                           </>

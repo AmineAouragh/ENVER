@@ -67,6 +67,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+
 import { Button } from "@/components/ui/button"
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -117,6 +133,17 @@ export default function TechStack(){
     const [ selectedJdkVersion, setSelectedJdkVersion ] = useState('')
     const [ selectedJavaBuildTool, setSelectedJavaBuildTool ] = useState('')
     const [ selectedJavaIDE, setSelectedJavaIDE ] = useState('')
+    const [ selectedHibernateDialect, setSelectedHibernateDialect ] = useState('')
+    const [ jdbcUrl, setJdbcUrl ] = useState('')
+
+    function handleHibernateDialectChange(value){
+      setSelectedHibernateDialect(value) 
+      if (value == "mysqldialect"){
+        setJdbcUrl("jdbc:mysql://localhost:3306/mydb")
+      } else if (value == "postgresqldialect"){
+        setJdbcUrl("jdbc:postgresql://localhost:5432/mydb")
+      }
+    }
 
     return (
         <>
@@ -355,6 +382,55 @@ export default function TechStack(){
                                     </div>
                                   </div>
                                 </div>
+                              </div>
+                              <div className='mb-8'>
+                                <h5 className='font-bold text-2xl font-Inter mb-4'>Java Additional Tools (if applicable)</h5>
+                                <Tabs defaultValue='hibernate' className='w-2/3'>
+                                  <TabsList className="grid w-full bg-slate-100 rounded-lg px-2 border border-slate-200 grid-cols-4 h-12">
+                                    <TabsTrigger value="springboot" className="text-lg text-gray-700">Spring Boot</TabsTrigger>
+                                    <TabsTrigger value="hibernate" className="text-lg text-gray-700">Hibernate</TabsTrigger>
+                                    <TabsTrigger value="junit" className="text-lg text-gray-700">JUnit</TabsTrigger>
+                                    <TabsTrigger value="javafx" className="text-lg text-gray-700">JavaFX</TabsTrigger>
+                                  </TabsList>
+                                  <TabsContent value="hibernate" className="w-full">
+                                    <Card className="w-full">
+                                      <CardHeader>
+                                        <CardTitle className="text-xl font-Inter">Hibernate</CardTitle>
+                                        <CardDescription>
+                                          Configure Hibernate for your Java project to enable database interactions and ORM.
+                                        </CardDescription>
+                                        <CardContent className="space-y-2">
+                                          <div className='space-y-1 flex flex-row items-center w-full'>
+                                            <Label htmlFor="hibernate_dialect" className="mr-4 text-lg w-1/3">Hibernate Dialect</Label>
+                                            <Select id="hibernate_dialect" onValueChange={value => handleHibernateDialectChange(value)}>
+                                              <SelectTrigger className="bg-white w-fit text-md font-semibold font-Inter rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border text-slate-600 border-slate-300">
+                                                <SelectValue placeholder="Select a Hibernate dialect" />
+                                              </SelectTrigger>
+                                              <SelectContent className="rounded-lg text-slate-600 shadow-lg focus:outline-none border border-slate-300">
+                                                <SelectGroup>
+                                                  <SelectItem className="text-md font-Inter font-semibold" value="mysqldialect">org.hibernate.dialect.MySQLDialect</SelectItem>
+                                                  <SelectItem className="text-md font-Inter font-semibold" value="postgresqldialect">org.hibernate.dialect.PostgreSQLDialect</SelectItem>
+                                                </SelectGroup>
+                                              </SelectContent>
+                                            </Select>
+                                          </div>
+                                          <div className='space-y-1 flex flex-row items-center w-full'>
+                                            <Label htmlFor="jdbc_url" className="mr-4 text-lg w-1/3">JDBC URL</Label>
+                                            <Input id="jdbc_url" className="w-fit text-md font-semibold font-Inter rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 border border-slate-300 text-slate-600" defaultValue={jdbcUrl} />
+                                          </div>
+                                          <div className='space-y-1 flex flex-row items-center w-full'>
+                                            <Label htmlFor="db_username" className="mr-4 text-lg w-1/3">Username</Label>
+                                            <Input id="db_username" className="w-fit text-md font-semibold font-Inter rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 border border-slate-300 text-slate-600" />
+                                          </div>
+                                          <div className='space-y-1 flex flex-row items-center w-full'>
+                                            <Label htmlFor="db_pass" className="mr-4 text-lg w-1/3">Password</Label>
+                                            <Input id="db_pass" type="password" className="w-fit text-md font-semibold font-Inter rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 border border-slate-300 text-slate-600" />
+                                          </div>
+                                        </CardContent>
+                                      </CardHeader>
+                                    </Card>
+                                  </TabsContent>
+                                </Tabs>
                               </div>
                               <div className='flex flex-row items-center justify-end mt-8'>
                                 <Button className="mr-4 text-xl bg-slate-800 py-2 rounded-lg">Save Configuration</Button>
